@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"net/http"
-	"go-webservices-clean-arch/internal/user"
 	"github.com/gin-gonic/gin"
+	"go-webservices-clean-arch/internal/user"
+	"net/http"
 )
 
 type UserHandler struct {
@@ -66,4 +66,26 @@ func (h *UserHandler) Login(c *gin.Context) {
 		"message": "Login successful",
 		"token":   token,
 	})
+}
+
+// GetProfile adalah handler untuk mendapatkan profil pengguna yang sedang login.
+func (h *UserHandler) GetProfile(c *gin.Context) {
+	// Ambil userID dari context yang sudah di-set oleh middleware
+	userID, exists := c.Get("userID")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "User not authenticated"})
+		return
+	}
+
+	// Panggil service untuk mendapatkan data user
+	user, err := h.userService.GetProfile(userID.(uint))
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	// Sembunyikan password dari respons
+	user.Password = ""
+
+	c.JSON(http.StatusOK, user)
 }

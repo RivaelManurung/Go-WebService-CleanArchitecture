@@ -53,3 +53,6 @@ func (s *userService) Login(username, password string) (string, error) {
 
 	return token, nil
 }
+func (s *userService) GetProfile(id  uint) (*User, error) {
+		return s.repo.FindByID(id)
+}

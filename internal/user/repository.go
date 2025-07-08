@@ -19,3 +19,9 @@ func (r *userRepository) FindByUsername(username string) (*User, error) {
 	err := r.db.Where("username = ?", username).First(&user).Error
 	return &user, err
 }
+
+func (r *userRepository) FindByID(id uint) (*User, error) {
+	var user User
+	err := r.db.Where("id = ?", id).First(&user).Error
+	return &user, err
+}
