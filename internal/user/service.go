@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/RivaelManurung/go-webservices-clean-arch/pkg/auth"
+	"go-webservices-clean-arch/pkg/auth"
 	"golang.org/x/crypto/bcrypt"
 )
 

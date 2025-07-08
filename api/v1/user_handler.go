@@ -2,7 +2,7 @@ package v1
 
 import (
 	"net/http"
-	"github.com/RivaelManurung/go-webservices-clean-arch/internal/user"
+	"go-webservices-clean-arch/internal/user"
 	"github.com/gin-gonic/gin"
 )
 

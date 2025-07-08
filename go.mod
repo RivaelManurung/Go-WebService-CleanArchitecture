@@ -1,4 +1,4 @@
-module github.com/RivaelManurung/go-webservices-clean-arch
+module go-webservices-clean-arch
 
 go 1.23.0
 
